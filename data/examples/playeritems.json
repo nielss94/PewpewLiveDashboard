@@ -1,0 +1,85 @@
+{
+    "usedUrl": "/liveclientdata/playeritems?riotId=Melikepewpew%23HOI",
+    "attempted": [
+        "/liveclientdata/playeritems?riotId=Melikepewpew%23HOI"
+    ],
+    "data": [
+        {
+            "canUse": false,
+            "consumable": false,
+            "count": 1,
+            "displayName": "Yun Tal Wildarrows",
+            "itemID": 3032,
+            "price": 750,
+            "rawDescription": "GeneratedTip_Item_3032_Description",
+            "rawDisplayName": "Item_3032_Name",
+            "slot": 0
+        },
+        {
+            "canUse": false,
+            "consumable": false,
+            "count": 1,
+            "displayName": "Runaan's Hurricane",
+            "itemID": 3085,
+            "price": 850,
+            "rawDescription": "GeneratedTip_Item_3085_Description",
+            "rawDisplayName": "Item_3085_Name",
+            "slot": 1
+        },
+        {
+            "canUse": false,
+            "consumable": false,
+            "count": 1,
+            "displayName": "Berserker's Greaves",
+            "itemID": 3006,
+            "price": 300,
+            "rawDescription": "GeneratedTip_Item_3006_Description",
+            "rawDisplayName": "Item_3006_Name",
+            "slot": 2
+        },
+        {
+            "canUse": false,
+            "consumable": false,
+            "count": 1,
+            "displayName": "Infinity Edge",
+            "itemID": 3031,
+            "price": 675,
+            "rawDescription": "GeneratedTip_Item_3031_Description",
+            "rawDisplayName": "Item_3031_Name",
+            "slot": 3
+        },
+        {
+            "canUse": false,
+            "consumable": false,
+            "count": 1,
+            "displayName": "The Collector",
+            "itemID": 6676,
+            "price": 525,
+            "rawDescription": "GeneratedTip_Item_6676_Description",
+            "rawDisplayName": "Item_6676_Name",
+            "slot": 4
+        },
+        {
+            "canUse": false,
+            "consumable": false,
+            "count": 1,
+            "displayName": "Cloak of Agility",
+            "itemID": 1018,
+            "price": 600,
+            "rawDescription": "GeneratedTip_Item_1018_Description",
+            "rawDisplayName": "Item_1018_Name",
+            "slot": 5
+        },
+        {
+            "canUse": true,
+            "consumable": true,
+            "count": 2,
+            "displayName": "Poro-Snax",
+            "itemID": 2052,
+            "price": 0,
+            "rawDescription": "GeneratedTip_Item_2052_Description",
+            "rawDisplayName": "Item_2052_Name",
+            "slot": 6
+        }
+    ]
+}

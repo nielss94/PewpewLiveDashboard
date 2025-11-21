@@ -1,0 +1,18 @@
+{
+    "usedUrl": "/liveclientdata/playersummonerspells?riotId=Melikepewpew%23HOI",
+    "attempted": [
+        "/liveclientdata/playersummonerspells?riotId=Melikepewpew%23HOI"
+    ],
+    "data": {
+        "summonerSpellOne": {
+            "displayName": "Flash",
+            "rawDescription": "GeneratedTip_SummonerSpell_SummonerFlash_Description",
+            "rawDisplayName": "GeneratedTip_SummonerSpell_SummonerFlash_DisplayName"
+        },
+        "summonerSpellTwo": {
+            "displayName": "Ghost",
+            "rawDescription": "GeneratedTip_SummonerSpell_SummonerHaste_Description",
+            "rawDisplayName": "GeneratedTip_SummonerSpell_SummonerHaste_DisplayName"
+        }
+    }
+}

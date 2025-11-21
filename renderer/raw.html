@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LLD Raw Viewer</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="https://unpkg.com/vue@3.4.21/dist/vue.global.prod.js"></script>
+    <style>
+      /* minor overrides for raw viewer */
+      .kv pre {
+        margin: 0;
+        white-space: pre-wrap;
+        word-break: break-word;
+      }
+      .toast-container {
+        position: fixed;
+        top: 18px;
+        right: 18px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        z-index: 9999;
+        pointer-events: none;
+      }
+      .toast {
+        min-width: 360px;
+        max-width: 520px;
+        background: linear-gradient(
+          180deg,
+          rgba(15, 17, 24, 0.98),
+          rgba(12, 14, 20, 0.98)
+        );
+        border: 3px solid #ffd166;
+        color: #fff;
+        border-radius: 14px;
+        padding: 14px 16px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6),
+          0 0 36px rgba(255, 209, 102, 0.35);
+        animation: toast-pop 160ms ease-out,
+          toast-pulse 1200ms ease-in-out infinite;
+        pointer-events: auto;
+        transform-origin: top right;
+      }
+      .toast.warning {
+        border-color: #f7b500;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6),
+          0 0 36px rgba(247, 181, 0, 0.4);
+      }
+      .toast.critical {
+        border-color: #ff4d4f;
+        box-shadow: 0 12px 48px rgba(0, 0, 0, 0.65),
+          0 0 42px rgba(255, 77, 79, 0.5);
+        animation-name: toast-pop, toast-pulse-strong;
+      }
+      .toast .title {
+        font-weight: 800;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 16px;
+        letter-spacing: 0.2px;
+        text-shadow: 0 1px 0 rgba(0, 0, 0, 0.3);
+      }
+      .toast .body {
+        margin-top: 6px;
+        font-size: 14px;
+        color: #d8e2f0;
+        line-height: 1.35;
+      }
+      @keyframes toast-pop {
+        from {
+          transform: translateY(-8px) scale(0.97);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0) scale(1);
+          opacity: 1;
+        }
+      }
+      @keyframes toast-pulse {
+        0%,
+        100% {
+          box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6),
+            0 0 22px rgba(255, 209, 102, 0.28);
+        }
+        50% {
+          box-shadow: 0 10px 42px rgba(0, 0, 0, 0.6),
+            0 0 30px rgba(255, 209, 102, 0.44);
+        }
+      }
+      @keyframes toast-pulse-strong {
+        0%,
+        100% {
+          box-shadow: 0 12px 48px rgba(0, 0, 0, 0.65),
+            0 0 30px rgba(255, 77, 79, 0.4);
+        }
+        50% {
+          box-shadow: 0 12px 56px rgba(0, 0, 0, 0.65),
+            0 0 44px rgba(255, 77, 79, 0.58);
+        }
+      }
+      .section {
+        background: var(--surface);
+        border: 1px solid #1e2230;
+        border-radius: 10px;
+        padding: 12px;
+      }
+      .section h3 {
+        margin: 0 0 10px 0;
+        font-size: 14px;
+        color: var(--muted);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .small {
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .grid-raw {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        padding: 12px;
+      }
+      .controls {
+        display: flex;
+        gap: 8px;
+        padding: 10px 12px;
+      }
+      .copy {
+        background: #0d0f15;
+        border: 1px solid #22283a;
+        color: var(--text);
+        border-radius: 6px;
+        padding: 4px 8px;
+        cursor: pointer;
+        font-size: 12px;
+      }
+      .summary-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+        padding: 12px;
+      }
+      .notif-scroll {
+        max-height: 360px;
+        overflow-y: auto;
+        padding-right: 6px;
+      }
+      .card {
+        background: var(--surface);
+        border: 1px solid #1e2230;
+        border-radius: 10px;
+        padding: 12px;
+      }
+      .card h4 {
+        margin: 0 0 8px 0;
+        font-size: 14px;
+        color: var(--muted);
+      }
+      .badge {
+        display: inline-block;
+        padding: 2px 8px;
+        border-radius: 999px;
+        border: 1px solid #22283a;
+        background: #0d0f15;
+        font-size: 12px;
+        margin-right: 6px;
+      }
+      .items {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+      .item-pill {
+        padding: 6px 8px;
+        border-radius: 8px;
+        background: #0d0f15;
+        border: 1px solid #22283a;
+        font-size: 12px;
+      }
+      .em {
+        margin-right: 6px;
+      }
+      .team-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        padding: 12px;
+      }
+      .roster {
+        background: var(--surface);
+        border: 1px solid #1e2230;
+        border-radius: 10px;
+        padding: 12px;
+      }
+      .player {
+        display: grid;
+        grid-template-columns: 36px 1fr;
+        gap: 8px;
+        padding: 8px 0;
+        border-bottom: 1px dashed #202434;
+      }
+      .player:last-child {
+        border-bottom: none;
+      }
+      .player .meta {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .player .meta .name {
+        font-weight: 600;
+      }
+      .player .line {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        align-items: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <header class="topbar">
+        <div class="title">Raw Data Viewer</div>
+        <div class="settings">
+          <label>
+            Poll (ms):
+            <input
+              type="number"
+              v-model.number="intervalMs"
+              min="250"
+              max="10000"
+              step="50"
+            />
+          </label>
+          <button class="btn" @click="applyInterval">Apply</button>
+          <label style="margin-left: 8px">
+            <input type="checkbox" v-model="auto" />
+            <span class="small">Auto</span>
+          </label>
+          <button class="btn" @click="refresh">Refresh</button>
+          <button class="btn" @click="testTip" style="margin-left: 8px">
+            Test Tip
+          </button>
+        </div>
+      </header>
+      <div class="toast-container">
+        <div
+          v-for="t in toasts"
+          :key="t.id + '-' + t.until"
+          class="toast"
+          :class="{ warning: t.severity === 'warning', critical: t.severity === 'critical' }"
+        >
+          <div class="title">
+            <span v-if="t.icon">{{ t.icon }}</span>
+            <span>{{ t.title }}</span>
+          </div>
+          <div class="body" v-if="t.body">{{ t.body }}</div>
+        </div>
+      </div>
+      <div class="controls" v-if="errorMsg">
+        <div class="error">Failed to load raw dump: {{ errorMsg }}</div>
+      </div>
+      <div class="grid-raw">
+        <div v-for="(val, key) in endpoints" :key="key" class="section">
+          <h3>
+            <span>{{ key }}</span>
+            <span class="small" v-if="val && (val.usedUrl || val.url)">
+              {{ val.usedUrl || val.url }}
+            </span>
+            <button class="copy" @click="copy(val)">Copy</button>
+          </h3>
+          <pre class="raw">{{ pretty(val) }}</pre>
+        </div>
+      </div>
+    </div>
+    <script src="../dist/renderer/raw.js"></script>
+  </body>
+</html>

@@ -1,0 +1,26 @@
+{
+    "usedUrl": "/liveclientdata/playermainrunes?riotId=Melikepewpew%23HOI",
+    "attempted": [
+        "/liveclientdata/playermainrunes?riotId=Melikepewpew%23HOI"
+    ],
+    "data": {
+        "keystone": {
+            "displayName": "Press the Attack",
+            "id": 8005,
+            "rawDescription": "perk_tooltip_PressTheAttack",
+            "rawDisplayName": "perk_displayname_PressTheAttack"
+        },
+        "primaryRuneTree": {
+            "displayName": "Precision",
+            "id": 8000,
+            "rawDescription": "perkstyle_tooltip_7201",
+            "rawDisplayName": "perkstyle_displayname_7201"
+        },
+        "secondaryRuneTree": {
+            "displayName": "Inspiration",
+            "id": 8300,
+            "rawDescription": "perkstyle_tooltip_7203",
+            "rawDisplayName": "perkstyle_displayname_7203"
+        }
+    }
+}

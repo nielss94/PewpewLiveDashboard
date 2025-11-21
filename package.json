@@ -1,0 +1,59 @@
+{
+  "name": "pewpewlivedashboard",
+  "version": "0.2.0",
+  "private": true,
+  "description": "Pewpew Live Game Dashboard (Electron + Vue + TypeScript)",
+  "author": "Pewpew",
+  "main": "dist/electron/main.js",
+  "scripts": {
+    "compile": "tsc",
+    "build": "tsc",
+    "start": "npm run compile && electron .",
+    "dev": "cross-env APP_DEV=1 npm run start",
+    "pack": "npm run compile && electron-builder --dir -w --publish=never",
+    "dist": "npm run compile && electron-builder -w --publish=never",
+    "dist:nsis": "npm run compile && electron-builder -w nsis --publish=never",
+    "dist:portable": "npm run compile && electron-builder -w portable --publish=never"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.30",
+    "electron": "^30.0.0",
+    "typescript": "^5.6.3",
+    "cross-env": "^7.0.3",
+    "electron-builder": "^24.9.1"
+  },
+  "dependencies": {
+    "yaml": "^2.4.5"
+  },
+  "build": {
+    "appId": "com.example.pewpewlivedashboard",
+    "productName": "Pewpew Live Dashboard",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "package.json",
+      "dist/**",
+      "renderer/**",
+      "data/**",
+      "assets/**"
+    ],
+    "asar": true,
+    "win": {
+      "icon": "assets/icon.ico",
+      "target": [
+        "nsis",
+        "portable"
+      ],
+      "artifactName": "${productName}-${version}-${arch}.${ext}"
+    },
+    "nsis": {
+      "oneClick": true,
+      "perMachine": false,
+      "allowElevation": true,
+      "allowToChangeInstallationDirectory": false,
+      "shortcutName": "Pewpew Live Dashboard",
+      "deleteAppDataOnUninstall": false
+    }
+  }
+}

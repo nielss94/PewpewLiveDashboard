@@ -1,0 +1,30 @@
+version: 1
+modules:
+  - id: wave_management
+    enabled: true
+    rules:
+      - id: cannon_incoming
+        name: "Cannon minion incoming"
+        description: "Notify shortly before cannon waves during laning phase"
+        enabled: true
+        when:
+          # Laning phase constraint
+          phase:
+            maxGameTimeSec: 1200
+          # Game modes where SR wave logic applies
+          modes: ["CLASSIC", "RANKED", "RANKED_SOLO_5x5", "RANKED_FLEX_SR", "URF", "ARURF", "PRACTICETOOL"]
+        trigger:
+          type: cannon_wave
+          # Fire tips this many seconds before the wave spawns
+          # Single value or list supported for staggered reminders
+          leadSeconds: [30, 15, 5]
+        notify:
+          throttleSec: 2
+          channels:
+            - type: overlay
+              severity: info
+              icon: "🟡"
+              title: "Cannon wave in {lead}s"
+              body: "Prep the wave to secure the cannon."
+              stickyMs: 5000
+

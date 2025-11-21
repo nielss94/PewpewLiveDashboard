@@ -1,0 +1,892 @@
+{
+    "url": "/liveclientdata/eventdata",
+    "data": [
+        {
+            "EventID": 0,
+            "EventName": "GameStart",
+            "EventTime": 0.012269199825823307
+        },
+        {
+            "EventID": 1,
+            "EventName": "MinionsSpawning",
+            "EventTime": 50.02493667602539
+        },
+        {
+            "Assisters": [
+                "Fabs",
+                "Lesoge",
+                "AntronHD"
+            ],
+            "EventID": 2,
+            "EventName": "ChampionKill",
+            "EventTime": 51.305877685546875,
+            "KillerName": "TheDarkHelios",
+            "VictimName": "KabucoSan"
+        },
+        {
+            "EventID": 3,
+            "EventName": "FirstBlood",
+            "EventTime": 51.305877685546875,
+            "Recipient": "TheDarkHelios"
+        },
+        {
+            "Assisters": [
+                "Melikepewpew",
+                "JELLOO"
+            ],
+            "EventID": 4,
+            "EventName": "ChampionKill",
+            "EventTime": 121.83000946044922,
+            "KillerName": "KaasRaps",
+            "VictimName": "eciruam99"
+        },
+        {
+            "Assisters": [
+                "Melikepewpew",
+                "JELLOO"
+            ],
+            "EventID": 5,
+            "EventName": "ChampionKill",
+            "EventTime": 129.41436767578125,
+            "KillerName": "KaasRaps",
+            "VictimName": "Fabs"
+        },
+        {
+            "EventID": 6,
+            "EventName": "Multikill",
+            "EventTime": 129.41436767578125,
+            "KillStreak": 2,
+            "KillerName": "KaasRaps"
+        },
+        {
+            "Assisters": [
+                "Melikepewpew",
+                "JELLOO"
+            ],
+            "EventID": 7,
+            "EventName": "ChampionKill",
+            "EventTime": 131.417236328125,
+            "KillerName": "KaasRaps",
+            "VictimName": "AntronHD"
+        },
+        {
+            "EventID": 8,
+            "EventName": "Multikill",
+            "EventTime": 131.417236328125,
+            "KillStreak": 3,
+            "KillerName": "KaasRaps"
+        },
+        {
+            "Assisters": [
+                "Lesoge",
+                "AntronHD"
+            ],
+            "EventID": 9,
+            "EventName": "ChampionKill",
+            "EventTime": 133.51841735839844,
+            "KillerName": "TheDarkHelios",
+            "VictimName": "KaasRaps"
+        },
+        {
+            "Assisters": [
+                "Melikepewpew",
+                "KaasRaps"
+            ],
+            "EventID": 10,
+            "EventName": "ChampionKill",
+            "EventTime": 136.2986602783203,
+            "KillerName": "Exxie",
+            "VictimName": "TheDarkHelios"
+        },
+        {
+            "Assisters": [
+                "AntronHD"
+            ],
+            "EventID": 11,
+            "EventName": "ChampionKill",
+            "EventTime": 137.76629638671875,
+            "KillerName": "TheDarkHelios",
+            "VictimName": "Exxie"
+        },
+        {
+            "EventID": 12,
+            "EventName": "Multikill",
+            "EventTime": 137.76629638671875,
+            "KillStreak": 2,
+            "KillerName": "TheDarkHelios"
+        },
+        {
+            "Assisters": [],
+            "EventID": 13,
+            "EventName": "ChampionKill",
+            "EventTime": 140.2646484375,
+            "KillerName": "Lesoge",
+            "VictimName": "Melikepewpew"
+        },
+        {
+            "Assisters": [
+                "Melikepewpew",
+                "JELLOO"
+            ],
+            "EventID": 14,
+            "EventName": "ChampionKill",
+            "EventTime": 145.7494659423828,
+            "KillerName": "KabucoSan",
+            "VictimName": "Lesoge"
+        },
+        {
+            "Assisters": [
+                "Lesoge",
+                "AntronHD",
+                "TheDarkHelios"
+            ],
+            "EventID": 15,
+            "EventName": "ChampionKill",
+            "EventTime": 146.95835876464844,
+            "KillerName": "eciruam99",
+            "VictimName": "KabucoSan"
+        },
+        {
+            "Assisters": [
+                "KabucoSan",
+                "Exxie",
+                "Melikepewpew",
+                "KaasRaps"
+            ],
+            "EventID": 16,
+            "EventName": "ChampionKill",
+            "EventTime": 210.264404296875,
+            "KillerName": "JELLOO",
+            "VictimName": "TheDarkHelios"
+        },
+        {
+            "Assisters": [
+                "Exxie",
+                "KaasRaps",
+                "JELLOO"
+            ],
+            "EventID": 17,
+            "EventName": "ChampionKill",
+            "EventTime": 217.45330810546875,
+            "KillerName": "Melikepewpew",
+            "VictimName": "Lesoge"
+        },
+        {
+            "Assisters": [
+                "Lesoge",
+                "eciruam99",
+                "AntronHD",
+                "TheDarkHelios"
+            ],
+            "EventID": 18,
+            "EventName": "ChampionKill",
+            "EventTime": 218.04812622070312,
+            "KillerName": "Fabs",
+            "VictimName": "Exxie"
+        },
+        {
+            "Assisters": [
+                "Lesoge",
+                "AntronHD",
+                "TheDarkHelios"
+            ],
+            "EventID": 19,
+            "EventName": "ChampionKill",
+            "EventTime": 218.48228454589844,
+            "KillerName": "Fabs",
+            "VictimName": "Melikepewpew"
+        },
+        {
+            "EventID": 20,
+            "EventName": "Multikill",
+            "EventTime": 218.48228454589844,
+            "KillStreak": 2,
+            "KillerName": "Fabs"
+        },
+        {
+            "Assisters": [
+                "Fabs",
+                "eciruam99",
+                "TheDarkHelios"
+            ],
+            "EventID": 21,
+            "EventName": "ChampionKill",
+            "EventTime": 219.71339416503906,
+            "KillerName": "AntronHD",
+            "VictimName": "KabucoSan"
+        },
+        {
+            "Assisters": [
+                "Lesoge"
+            ],
+            "EventID": 22,
+            "EventName": "ChampionKill",
+            "EventTime": 223.76296997070312,
+            "KillerName": "Fabs",
+            "VictimName": "JELLOO"
+        },
+        {
+            "EventID": 23,
+            "EventName": "Multikill",
+            "EventTime": 223.76296997070312,
+            "KillStreak": 3,
+            "KillerName": "Fabs"
+        },
+        {
+            "Assisters": [
+                "KabucoSan",
+                "Melikepewpew",
+                "JELLOO"
+            ],
+            "EventID": 24,
+            "EventName": "ChampionKill",
+            "EventTime": 225.0277099609375,
+            "KillerName": "KaasRaps",
+            "VictimName": "Fabs"
+        },
+        {
+            "Assisters": [
+                "Fabs",
+                "Lesoge",
+                "eciruam99"
+            ],
+            "EventID": 25,
+            "EventName": "ChampionKill",
+            "EventTime": 234.59500122070312,
+            "KillerName": "AntronHD",
+            "VictimName": "KaasRaps"
+        },
+        {
+            "Acer": "AntronHD",
+            "AcingTeam": "ORDER",
+            "EventID": 26,
+            "EventName": "Ace",
+            "EventTime": 234.59500122070312
+        },
+        {
+            "Assisters": [
+                "JELLOO"
+            ],
+            "EventID": 27,
+            "EventName": "ChampionKill",
+            "EventTime": 298.75390625,
+            "KillerName": "KabucoSan",
+            "VictimName": "eciruam99"
+        },
+        {
+            "Assisters": [
+                "AntronHD",
+                "TheDarkHelios"
+            ],
+            "EventID": 28,
+            "EventName": "ChampionKill",
+            "EventTime": 299.45733642578125,
+            "KillerName": "Lesoge",
+            "VictimName": "Melikepewpew"
+        },
+        {
+            "Assisters": [
+                "KabucoSan",
+                "Melikepewpew",
+                "JELLOO"
+            ],
+            "EventID": 29,
+            "EventName": "ChampionKill",
+            "EventTime": 299.98822021484375,
+            "KillerName": "Exxie",
+            "VictimName": "TheDarkHelios"
+        },
+        {
+            "Assisters": [
+                "Fabs",
+                "AntronHD",
+                "TheDarkHelios"
+            ],
+            "EventID": 30,
+            "EventName": "ChampionKill",
+            "EventTime": 304.14892578125,
+            "KillerName": "Lesoge",
+            "VictimName": "Exxie"
+        },
+        {
+            "EventID": 31,
+            "EventName": "Multikill",
+            "EventTime": 304.14892578125,
+            "KillStreak": 2,
+            "KillerName": "Lesoge"
+        },
+        {
+            "Assisters": [
+                "Exxie",
+                "JELLOO"
+            ],
+            "EventID": 32,
+            "EventName": "ChampionKill",
+            "EventTime": 304.4140625,
+            "KillerName": "KabucoSan",
+            "VictimName": "Fabs"
+        },
+        {
+            "EventID": 33,
+            "EventName": "Multikill",
+            "EventTime": 304.4140625,
+            "KillStreak": 2,
+            "KillerName": "KabucoSan"
+        },
+        {
+            "Assisters": [
+                "Lesoge"
+            ],
+            "EventID": 34,
+            "EventName": "ChampionKill",
+            "EventTime": 319.51202392578125,
+            "KillerName": "AntronHD",
+            "VictimName": "KabucoSan"
+        },
+        {
+            "Assisters": [
+                "KabucoSan",
+                "Melikepewpew",
+                "JELLOO"
+            ],
+            "EventID": 35,
+            "EventName": "ChampionKill",
+            "EventTime": 328.7055358886719,
+            "KillerName": "KaasRaps",
+            "VictimName": "Lesoge"
+        },
+        {
+            "Assisters": [
+                "Fabs",
+                "eciruam99",
+                "AntronHD"
+            ],
+            "EventID": 36,
+            "EventName": "ChampionKill",
+            "EventTime": 356.155029296875,
+            "KillerName": "TheDarkHelios",
+            "VictimName": "Exxie"
+        },
+        {
+            "Assisters": [],
+            "EventID": 37,
+            "EventName": "ChampionKill",
+            "EventTime": 377.5792541503906,
+            "KillerName": "Lesoge",
+            "VictimName": "Melikepewpew"
+        },
+        {
+            "Assisters": [
+                "KabucoSan",
+                "JELLOO"
+            ],
+            "EventID": 38,
+            "EventName": "ChampionKill",
+            "EventTime": 377.646240234375,
+            "KillerName": "KaasRaps",
+            "VictimName": "TheDarkHelios"
+        },
+        {
+            "Assisters": [
+                "eciruam99",
+                "AntronHD",
+                "TheDarkHelios"
+            ],
+            "EventID": 39,
+            "EventName": "ChampionKill",
+            "EventTime": 384.02435302734375,
+            "KillerName": "Lesoge",
+            "VictimName": "KaasRaps"
+        },
+        {
+            "EventID": 40,
+            "EventName": "Multikill",
+            "EventTime": 384.02435302734375,
+            "KillStreak": 2,
+            "KillerName": "Lesoge"
+        },
+        {
+            "Assisters": [
+                "Lesoge",
+                "eciruam99",
+                "AntronHD",
+                "TheDarkHelios"
+            ],
+            "EventID": 41,
+            "EventName": "ChampionKill",
+            "EventTime": 393.1870422363281,
+            "KillerName": "Fabs",
+            "VictimName": "KabucoSan"
+        },
+        {
+            "Assisters": [
+                "Fabs",
+                "Lesoge",
+                "eciruam99",
+                "AntronHD"
+            ],
+            "EventID": 42,
+            "EventName": "ChampionKill",
+            "EventTime": 416.6878662109375,
+            "KillerName": "TheDarkHelios",
+            "VictimName": "Exxie"
+        },
+        {
+            "Assisters": [
+                "Exxie",
+                "JELLOO"
+            ],
+            "EventID": 43,
+            "EventName": "ChampionKill",
+            "EventTime": 418.2765197753906,
+            "KillerName": "Melikepewpew",
+            "VictimName": "eciruam99"
+        },
+        {
+            "Assisters": [
+                "Fabs",
+                "Lesoge",
+                "eciruam99",
+                "TheDarkHelios"
+            ],
+            "EventID": 44,
+            "EventName": "ChampionKill",
+            "EventTime": 420.9836730957031,
+            "KillerName": "AntronHD",
+            "VictimName": "Melikepewpew"
+        },
+        {
+            "Assisters": [
+                "Exxie",
+                "JELLOO"
+            ],
+            "EventID": 45,
+            "EventName": "ChampionKill",
+            "EventTime": 424.3932189941406,
+            "KillerName": "KaasRaps",
+            "VictimName": "Fabs"
+        },
+        {
+            "Assisters": [
+                "Melikepewpew",
+                "JELLOO"
+            ],
+            "EventID": 46,
+            "EventName": "ChampionKill",
+            "EventTime": 425.7541809082031,
+            "KillerName": "KaasRaps",
+            "VictimName": "AntronHD"
+        },
+        {
+            "EventID": 47,
+            "EventName": "Multikill",
+            "EventTime": 425.7541809082031,
+            "KillStreak": 2,
+            "KillerName": "KaasRaps"
+        },
+        {
+            "Assisters": [
+                "Exxie",
+                "Melikepewpew",
+                "JELLOO"
+            ],
+            "EventID": 48,
+            "EventName": "ChampionKill",
+            "EventTime": 426.5074157714844,
+            "KillerName": "KaasRaps",
+            "VictimName": "Lesoge"
+        },
+        {
+            "EventID": 49,
+            "EventName": "Multikill",
+            "EventTime": 426.5074157714844,
+            "KillStreak": 3,
+            "KillerName": "KaasRaps"
+        },
+        {
+            "Assisters": [
+                "Exxie",
+                "Melikepewpew",
+                "JELLOO"
+            ],
+            "EventID": 50,
+            "EventName": "ChampionKill",
+            "EventTime": 427.7353515625,
+            "KillerName": "KaasRaps",
+            "VictimName": "TheDarkHelios"
+        },
+        {
+            "EventID": 51,
+            "EventName": "Multikill",
+            "EventTime": 427.7353515625,
+            "KillStreak": 4,
+            "KillerName": "KaasRaps"
+        },
+        {
+            "Acer": "KaasRaps",
+            "AcingTeam": "CHAOS",
+            "EventID": 52,
+            "EventName": "Ace",
+            "EventTime": 427.7353515625
+        },
+        {
+            "Assisters": [
+                "KabucoSan",
+                "JELLOO"
+            ],
+            "EventID": 53,
+            "EventName": "TurretKilled",
+            "EventTime": 439.0226135253906,
+            "KillerName": "KaasRaps",
+            "TurretKilled": "Turret_TOrder_L1_P3_2250400266"
+        },
+        {
+            "EventID": 54,
+            "EventName": "FirstBrick",
+            "EventTime": 439.0226135253906,
+            "KillerName": "KaasRaps"
+        },
+        {
+            "Assisters": [],
+            "EventID": 55,
+            "EventName": "ChampionKill",
+            "EventTime": 446.271484375,
+            "KillerName": "eciruam99",
+            "VictimName": "JELLOO"
+        },
+        {
+            "Assisters": [
+                "eciruam99"
+            ],
+            "EventID": 56,
+            "EventName": "ChampionKill",
+            "EventTime": 456.1297607421875,
+            "KillerName": "Fabs",
+            "VictimName": "KabucoSan"
+        },
+        {
+            "Assisters": [
+                "Fabs",
+                "eciruam99",
+                "AntronHD"
+            ],
+            "EventID": 57,
+            "EventName": "ChampionKill",
+            "EventTime": 470.9658203125,
+            "KillerName": "TheDarkHelios",
+            "VictimName": "Melikepewpew"
+        },
+        {
+            "Assisters": [
+                "Exxie",
+                "Melikepewpew"
+            ],
+            "EventID": 58,
+            "EventName": "ChampionKill",
+            "EventTime": 480.0946350097656,
+            "KillerName": "KaasRaps",
+            "VictimName": "eciruam99"
+        },
+        {
+            "Assisters": [
+                "Fabs",
+                "TheDarkHelios"
+            ],
+            "EventID": 59,
+            "EventName": "ChampionKill",
+            "EventTime": 511.11822509765625,
+            "KillerName": "AntronHD",
+            "VictimName": "KaasRaps"
+        },
+        {
+            "Assisters": [
+                "KabucoSan",
+                "Melikepewpew",
+                "JELLOO"
+            ],
+            "EventID": 60,
+            "EventName": "ChampionKill",
+            "EventTime": 511.91351318359375,
+            "KillerName": "Exxie",
+            "VictimName": "TheDarkHelios"
+        },
+        {
+            "Assisters": [
+                "Fabs",
+                "eciruam99",
+                "AntronHD",
+                "TheDarkHelios"
+            ],
+            "EventID": 61,
+            "EventName": "ChampionKill",
+            "EventTime": 512.2894287109375,
+            "KillerName": "Lesoge",
+            "VictimName": "Exxie"
+        },
+        {
+            "Assisters": [
+                "Fabs",
+                "eciruam99",
+                "AntronHD",
+                "TheDarkHelios"
+            ],
+            "EventID": 62,
+            "EventName": "ChampionKill",
+            "EventTime": 514.1220092773438,
+            "KillerName": "Lesoge",
+            "VictimName": "KabucoSan"
+        },
+        {
+            "EventID": 63,
+            "EventName": "Multikill",
+            "EventTime": 514.1220092773438,
+            "KillStreak": 2,
+            "KillerName": "Lesoge"
+        },
+        {
+            "Assisters": [
+                "KabucoSan",
+                "Exxie",
+                "Melikepewpew",
+                "KaasRaps"
+            ],
+            "EventID": 64,
+            "EventName": "ChampionKill",
+            "EventTime": 516.7015991210938,
+            "KillerName": "JELLOO",
+            "VictimName": "Fabs"
+        },
+        {
+            "Assisters": [
+                "Lesoge",
+                "AntronHD"
+            ],
+            "EventID": 65,
+            "EventName": "ChampionKill",
+            "EventTime": 524.296142578125,
+            "KillerName": "eciruam99",
+            "VictimName": "JELLOO"
+        },
+        {
+            "Assisters": [
+                "JELLOO"
+            ],
+            "EventID": 66,
+            "EventName": "ChampionKill",
+            "EventTime": 535.3424072265625,
+            "KillerName": "Melikepewpew",
+            "VictimName": "Lesoge"
+        },
+        {
+            "Assisters": [
+                "eciruam99",
+                "AntronHD"
+            ],
+            "EventID": 67,
+            "EventName": "ChampionKill",
+            "EventTime": 536.0054321289062,
+            "KillerName": "Lesoge",
+            "VictimName": "Melikepewpew"
+        },
+        {
+            "Assisters": [
+                "Melikepewpew",
+                "JELLOO"
+            ],
+            "EventID": 68,
+            "EventName": "ChampionKill",
+            "EventTime": 545.4577026367188,
+            "KillerName": "KaasRaps",
+            "VictimName": "AntronHD"
+        },
+        {
+            "Assisters": [
+                "Exxie",
+                "JELLOO"
+            ],
+            "EventID": 69,
+            "EventName": "ChampionKill",
+            "EventTime": 559.7925415039062,
+            "KillerName": "KabucoSan",
+            "VictimName": "eciruam99"
+        },
+        {
+            "Assisters": [
+                "Fabs",
+                "eciruam99",
+                "AntronHD"
+            ],
+            "EventID": 70,
+            "EventName": "ChampionKill",
+            "EventTime": 565.3687133789062,
+            "KillerName": "TheDarkHelios",
+            "VictimName": "KaasRaps"
+        },
+        {
+            "Assisters": [
+                "Fabs"
+            ],
+            "EventID": 71,
+            "EventName": "ChampionKill",
+            "EventTime": 570.7468872070312,
+            "KillerName": "TheDarkHelios",
+            "VictimName": "KabucoSan"
+        },
+        {
+            "EventID": 72,
+            "EventName": "Multikill",
+            "EventTime": 570.7468872070312,
+            "KillStreak": 2,
+            "KillerName": "TheDarkHelios"
+        },
+        {
+            "Assisters": [
+                "JELLOO"
+            ],
+            "EventID": 73,
+            "EventName": "ChampionKill",
+            "EventTime": 581.08740234375,
+            "KillerName": "Melikepewpew",
+            "VictimName": "Lesoge"
+        },
+        {
+            "Assisters": [
+                "KabucoSan",
+                "JELLOO"
+            ],
+            "EventID": 74,
+            "EventName": "ChampionKill",
+            "EventTime": 615.1034545898438,
+            "KillerName": "KaasRaps",
+            "VictimName": "Fabs"
+        },
+        {
+            "Assisters": [
+                "Melikepewpew"
+            ],
+            "EventID": 75,
+            "EventName": "ChampionKill",
+            "EventTime": 618.0060424804688,
+            "KillerName": "KaasRaps",
+            "VictimName": "TheDarkHelios"
+        },
+        {
+            "EventID": 76,
+            "EventName": "Multikill",
+            "EventTime": 618.0060424804688,
+            "KillStreak": 2,
+            "KillerName": "KaasRaps"
+        },
+        {
+            "Assisters": [
+                "AntronHD",
+                "TheDarkHelios"
+            ],
+            "EventID": 77,
+            "EventName": "ChampionKill",
+            "EventTime": 624.18798828125,
+            "KillerName": "Lesoge",
+            "VictimName": "KaasRaps"
+        },
+        {
+            "Assisters": [
+                "Fabs",
+                "AntronHD"
+            ],
+            "EventID": 78,
+            "EventName": "ChampionKill",
+            "EventTime": 626.92041015625,
+            "KillerName": "eciruam99",
+            "VictimName": "Melikepewpew"
+        },
+        {
+            "Assisters": [
+                "KabucoSan",
+                "Melikepewpew",
+                "KaasRaps",
+                "JELLOO"
+            ],
+            "EventID": 79,
+            "EventName": "ChampionKill",
+            "EventTime": 632.0603637695312,
+            "KillerName": "Exxie",
+            "VictimName": "AntronHD"
+        },
+        {
+            "Assisters": [
+                "Fabs",
+                "AntronHD"
+            ],
+            "EventID": 80,
+            "EventName": "ChampionKill",
+            "EventTime": 633.7817993164062,
+            "KillerName": "Lesoge",
+            "VictimName": "Exxie"
+        },
+        {
+            "EventID": 81,
+            "EventName": "Multikill",
+            "EventTime": 633.7817993164062,
+            "KillStreak": 2,
+            "KillerName": "Lesoge"
+        },
+        {
+            "Assisters": [
+                "eciruam99",
+                "AntronHD"
+            ],
+            "EventID": 82,
+            "EventName": "ChampionKill",
+            "EventTime": 642.9010620117188,
+            "KillerName": "Lesoge",
+            "VictimName": "KabucoSan"
+        },
+        {
+            "EventID": 83,
+            "EventName": "Multikill",
+            "EventTime": 642.9010620117188,
+            "KillStreak": 3,
+            "KillerName": "Lesoge"
+        },
+        {
+            "Assisters": [
+                "KabucoSan",
+                "Exxie",
+                "Melikepewpew"
+            ],
+            "EventID": 84,
+            "EventName": "ChampionKill",
+            "EventTime": 643.1666870117188,
+            "KillerName": "JELLOO",
+            "VictimName": "Lesoge"
+        },
+        {
+            "Assisters": [
+                "Exxie"
+            ],
+            "EventID": 85,
+            "EventName": "ChampionKill",
+            "EventTime": 651.3824462890625,
+            "KillerName": "JELLOO",
+            "VictimName": "eciruam99"
+        },
+        {
+            "EventID": 86,
+            "EventName": "Multikill",
+            "EventTime": 651.3824462890625,
+            "KillStreak": 2,
+            "KillerName": "JELLOO"
+        },
+        {
+            "Assisters": [
+                "Lesoge",
+                "eciruam99"
+            ],
+            "EventID": 87,
+            "EventName": "ChampionKill",
+            "EventTime": 652.5604248046875,
+            "KillerName": "Fabs",
+            "VictimName": "JELLOO"
+        }
+    ]
+}

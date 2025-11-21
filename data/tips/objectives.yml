@@ -1,0 +1,62 @@
+version: 1
+modules:
+  - id: objectives_prep
+    enabled: true
+    rules:
+      - id: prepare_dragon
+        name: "Prepare Dragon"
+        enabled: true
+        when:
+          modes: ["CLASSIC", "RANKED", "RANKED_SOLO_5x5", "RANKED_FLEX_SR", "URF", "ARURF", "PRACTICETOOL"]
+        trigger:
+          type: objective_spawn
+          objective: dragon
+          leadSeconds: [120, 60, 15]
+        notify:
+          throttleSec: 2
+          channels:
+            - type: overlay
+              severity: warning
+              icon: "🐉"
+              title: "Dragon spawns in {lead}s"
+              body: "Set up vision and prio for dragon."
+              stickyMs: 5000
+
+      - id: prepare_herald
+        name: "Prepare Herald"
+        enabled: true
+        when:
+          modes: ["CLASSIC", "RANKED", "RANKED_SOLO_5x5", "RANKED_FLEX_SR", "PRACTICETOOL"]
+        trigger:
+          type: objective_spawn
+          objective: herald
+          leadSeconds: [90, 45, 15]
+        notify:
+          throttleSec: 2
+          channels:
+            - type: overlay
+              severity: warning
+              icon: "🗿"
+              title: "Herald spawns in {lead}s"
+              body: "Top river vision and lane state."
+              stickyMs: 5000
+
+      - id: prepare_baron
+        name: "Prepare Baron"
+        enabled: true
+        when:
+          modes: ["CLASSIC", "RANKED", "RANKED_SOLO_5x5", "RANKED_FLEX_SR", "PRACTICETOOL"]
+        trigger:
+          type: objective_spawn
+          objective: baron
+          leadSeconds: [120, 60, 15]
+        notify:
+          throttleSec: 2
+          channels:
+            - type: overlay
+              severity: critical
+              icon: "👑"
+              title: "Baron spawns in {lead}s"
+              body: "Group, sweep vision, and secure top-side control."
+              stickyMs: 6000
+

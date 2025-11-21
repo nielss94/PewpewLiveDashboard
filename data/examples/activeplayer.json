@@ -1,0 +1,82 @@
+{
+    "url": "/liveclientdata/activeplayer",
+    "data": {
+        "abilities": {
+            "E": {
+                "abilityLevel": 3,
+                "displayName": "Kanmei's Steps | Untouchable Shadow",
+                "id": "YunaraE",
+                "rawDescription": "GeneratedTip_Spell_YunaraE_Description",
+                "rawDisplayName": "GeneratedTip_Spell_YunaraE_DisplayName"
+            },
+            "Passive": {
+                "displayName": "Vow of the First Lands",
+                "id": "YunaraPassive",
+                "rawDescription": "GeneratedTip_Passive_YunaraPassive_Description",
+                "rawDisplayName": "GeneratedTip_Passive_YunaraPassive_DisplayName"
+            },
+            "Q": {
+                "abilityLevel": 5,
+                "displayName": "Cultivation of Spirit",
+                "id": "YunaraQ",
+                "rawDescription": "GeneratedTip_Spell_YunaraQ_Description",
+                "rawDisplayName": "GeneratedTip_Spell_YunaraQ_DisplayName"
+            },
+            "R": {
+                "abilityLevel": 2,
+                "displayName": "Transcend One's Self",
+                "id": "YunaraR",
+                "rawDescription": "GeneratedTip_Spell_YunaraR_Description",
+                "rawDisplayName": "GeneratedTip_Spell_YunaraR_DisplayName"
+            },
+            "W": {
+                "abilityLevel": 5,
+                "displayName": "Arc of Judgment | Arc of Ruin",
+                "id": "YunaraW",
+                "rawDescription": "GeneratedTip_Spell_YunaraW_Description",
+                "rawDisplayName": "GeneratedTip_Spell_YunaraW_DisplayName"
+            }
+        },
+        "championStats": {
+            "abilityHaste": 0,
+            "abilityPower": 0,
+            "armor": 104.30718994140625,
+            "armorPenetrationFlat": 0,
+            "armorPenetrationPercent": 1,
+            "attackDamage": 291.1368713378906,
+            "attackRange": 575,
+            "attackSpeed": 1.7669341564178467,
+            "bonusArmorPenetrationPercent": 1,
+            "bonusMagicPenetrationPercent": 1,
+            "critChance": 0.7499998807907104,
+            "critDamage": 215.00001525878906,
+            "currentHealth": 0,
+            "healShieldPower": 0,
+            "healthRegenRate": 2.2591500282287598,
+            "lifeSteal": 0,
+            "magicLethality": 0,
+            "magicPenetrationFlat": 0,
+            "magicPenetrationPercent": 1,
+            "magicResist": 68.18567657470703,
+            "maxHealth": 2674.136962890625,
+            "moveSpeed": 384.79998779296875,
+            "omnivamp": 0,
+            "physicalLethality": 10,
+            "physicalVamp": 0,
+            "resourceMax": 871.925048828125,
+            "resourceRegenRate": 5.210263729095459,
+            "resourceType": "MANA",
+            "resourceValue": 738.2317504882812,
+            "spellVamp": 0,
+            "tenacity": 5
+        },
+        "currentGold": 208.5308837890625,
+        "fullRunes": {},
+        "level": 15,
+        "riotId": "Melikepewpew#HOI",
+        "riotIdGameName": "Melikepewpew",
+        "riotIdTagLine": "HOI",
+        "summonerName": "Melikepewpew#HOI",
+        "teamRelativeColors": true
+    }
+}

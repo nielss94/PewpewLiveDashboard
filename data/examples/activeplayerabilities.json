@@ -1,0 +1,39 @@
+{
+    "url": "/liveclientdata/activeplayerabilities",
+    "data": {
+        "E": {
+            "abilityLevel": 3,
+            "displayName": "Kanmei's Steps | Untouchable Shadow",
+            "id": "YunaraE",
+            "rawDescription": "GeneratedTip_Spell_YunaraE_Description",
+            "rawDisplayName": "GeneratedTip_Spell_YunaraE_DisplayName"
+        },
+        "Passive": {
+            "displayName": "Vow of the First Lands",
+            "id": "YunaraPassive",
+            "rawDescription": "GeneratedTip_Passive_YunaraPassive_Description",
+            "rawDisplayName": "GeneratedTip_Passive_YunaraPassive_DisplayName"
+        },
+        "Q": {
+            "abilityLevel": 5,
+            "displayName": "Cultivation of Spirit",
+            "id": "YunaraQ",
+            "rawDescription": "GeneratedTip_Spell_YunaraQ_Description",
+            "rawDisplayName": "GeneratedTip_Spell_YunaraQ_DisplayName"
+        },
+        "R": {
+            "abilityLevel": 2,
+            "displayName": "Transcend One's Self",
+            "id": "YunaraR",
+            "rawDescription": "GeneratedTip_Spell_YunaraR_Description",
+            "rawDisplayName": "GeneratedTip_Spell_YunaraR_DisplayName"
+        },
+        "W": {
+            "abilityLevel": 5,
+            "displayName": "Arc of Judgment | Arc of Ruin",
+            "id": "YunaraW",
+            "rawDescription": "GeneratedTip_Spell_YunaraW_Description",
+            "rawDisplayName": "GeneratedTip_Spell_YunaraW_DisplayName"
+        }
+    }
+}

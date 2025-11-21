@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pewpew Live Dashboard</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="https://unpkg.com/vue@3.4.21/dist/vue.global.prod.js"></script>
+    <style>
+      .toast-container {
+        position: fixed;
+        top: 18px;
+        right: 18px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        z-index: 9999;
+        pointer-events: none;
+      }
+      .toast {
+        min-width: 360px;
+        max-width: 520px;
+        background: linear-gradient(
+          180deg,
+          rgba(15, 17, 24, 0.98),
+          rgba(12, 14, 20, 0.98)
+        );
+        border: 2px solid #ffd166;
+        color: #fff;
+        border-radius: 14px;
+        padding: 14px 16px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45),
+          0 0 22px rgba(255, 209, 102, 0.25);
+        animation: toast-pop 160ms ease-out;
+        pointer-events: auto;
+        transform-origin: top right;
+        position: relative;
+      }
+      .toast::before {
+        content: "";
+        position: absolute;
+        left: -3px;
+        top: -3px;
+        bottom: -3px;
+        width: 8px;
+        background: linear-gradient(180deg, #ffd166, #ffaa00);
+        border-radius: 12px 0 0 12px;
+        filter: drop-shadow(0 0 8px rgba(255, 209, 102, 0.5));
+      }
+      .toast.warning {
+        border-color: #f7b500;
+        box-shadow: 0 6px 22px rgba(0, 0, 0, 0.5),
+          0 0 26px rgba(247, 181, 0, 0.32);
+      }
+      .toast.critical {
+        border-color: #ff4d4f;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.58),
+          0 0 34px rgba(255, 77, 79, 0.45);
+        animation-name: toast-pop;
+      }
+      .toast.critical::before {
+        background: linear-gradient(180deg, #ff4d4f, #ff000a);
+        filter: drop-shadow(0 0 10px rgba(255, 77, 79, 0.6));
+      }
+      .toast .title {
+        font-weight: 800;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 16px;
+        letter-spacing: 0.2px;
+        text-shadow: 0 1px 0 rgba(0, 0, 0, 0.3);
+      }
+      .toast .body {
+        margin-top: 6px;
+        font-size: 14px;
+        color: #d8e2f0;
+        line-height: 1.35;
+      }
+      @keyframes toast-pop {
+        from {
+          transform: translateY(-8px) scale(0.97);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0) scale(1);
+          opacity: 1;
+        }
+      }
+      @keyframes toast-pulse {
+        0%,
+        100% {
+          box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6),
+            0 0 22px rgba(255, 209, 102, 0.28);
+        }
+        50% {
+          box-shadow: 0 10px 42px rgba(0, 0, 0, 0.6),
+            0 0 30px rgba(255, 209, 102, 0.44);
+        }
+      }
+      @keyframes toast-pulse-strong {
+        0%,
+        100% {
+          box-shadow: 0 12px 48px rgba(0, 0, 0, 0.65),
+            0 0 30px rgba(255, 77, 79, 0.4);
+        }
+        50% {
+          box-shadow: 0 12px 56px rgba(0, 0, 0, 0.65),
+            0 0 44px rgba(255, 77, 79, 0.58);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <header class="topbar">
+        <div class="title">Pewpew Live Dashboard <span class="small muted" v-if="appVersion">v{{ appVersion }}</span></div>
+        <div class="settings">
+          <label>
+            Poll (ms):
+            <input
+              type="number"
+              v-model.number="pollMs"
+              min="250"
+              max="10000"
+              step="50"
+            />
+          </label>
+          <button @click="applyPoll">Apply</button>
+          <button class="btn" v-if="isDev" @click="openRaw">View Raw Data</button>
+          <button class="btn" @click="toggleOverlay" title="Show/Hide in-game overlay">Toggle Overlay</button>
+        </div>
+      </header>
+
+      <nav class="tabs">
+        <button
+          class="tab"
+          :class="{ active: activeTab === 'home' }"
+          @click="activeTab = 'home'"
+        >
+          Home
+        </button>
+        <button
+          class="tab"
+          :class="{ active: activeTab === 'live' }"
+          @click="activeTab = 'live'"
+        >
+          Live Game
+        </button>
+      </nav>
+
+      <main v-if="activeTab === 'home'" class="home-content">
+        <section class="panel full">
+          <h3>About Pewpew Live Dashboard</h3>
+          <p>
+            This application provides real-time data and insights for your
+            League of Legends games. When you're in a live game, switch to the
+            <strong>Live Game</strong> tab to see detailed information about
+            your performance, team status, objectives, and more.
+          </p>
+          <p class="muted">
+            The app will automatically switch to the Live Game tab when a game
+            is detected.
+          </p>
+        </section>
+      </main>
+
+      <main v-if="activeTab === 'live'">
+        <div v-if="!hasData" class="panel full" style="margin: 12px; padding: 20px">
+          <div style="display: grid; grid-template-columns: 72px 1fr; gap: 14px; align-items: center">
+            <div style="font-size: 42px">🎮</div>
+            <div>
+              <div style="font-size: 18px; font-weight: 800">Waiting for a live game</div>
+              <div class="muted" style="margin-top: 4px">
+                Start a match and keep this window running. We’ll show your live data and tips here.
+              </div>
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 16px">
+            <div class="panel" style="padding: 12px">
+              <div style="font-weight: 700">1) Launch League</div>
+              <div class="small muted" style="margin-top: 6px">Enter a Summoner’s Rift or ARAM game.</div>
+            </div>
+            <div class="panel" style="padding: 12px">
+              <div style="font-weight: 700">2) Overlay</div>
+              <div class="small muted" style="margin-top: 6px">
+                Overlay appears automatically in-game. Toggle anytime from the header.
+              </div>
+            </div>
+            <div class="panel" style="padding: 12px">
+              <div style="font-weight: 700">3) Tips & Timers</div>
+              <div class="small muted" style="margin-top: 6px">
+                See wave management and objective prep reminders as you play.
+              </div>
+            </div>
+          </div>
+          <div class="small muted" style="margin-top: 12px">
+            Tip: Use Windowed or Borderless mode for the best overlay experience.
+          </div>
+        </div>
+
+        <!-- Summary cards (compact) - matching raw screen layout -->
+        <div v-if="hasData" class="summary-grid">
+          <div class="card">
+            <h4>Game</h4>
+            <div>
+              Mode:
+              <strong
+                >{{ snapshot.game.modeName || snapshot.game.mode || '—'
+                }}</strong
+              >
+            </div>
+            <div>
+              Time: <strong>{{ fmtClock(snapshot.game.time) || '—' }}</strong>
+            </div>
+          </div>
+          <div class="card">
+            <h4>Me</h4>
+            <div class="row" style="align-items: center; gap: 8px">
+              <img
+                v-if="snapshot.assets?.championIconUrl"
+                :src="snapshot.assets.championIconUrl"
+                class="icon"
+                alt=""
+              />
+              <div>
+                <div>
+                  RiotID: <strong>{{ snapshot.player.name || '—' }}</strong>
+                </div>
+                <div>
+                  Champion:
+                  <strong>{{ snapshot.player.champion || '—' }}</strong>
+                </div>
+                <div>
+                  Level: <strong>{{ snapshot.player.level ?? '—' }}</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <h4>Scores</h4>
+            <div class="badge" :title="'Total kills in this game'">
+              <span class="em">⚔</span>{{ snapshot.stats.kills ?? '—' }}
+            </div>
+            <div class="badge" :title="'Total deaths in this game'">
+              <span class="em">☠</span>{{ snapshot.stats.deaths ?? '—' }}
+            </div>
+            <div class="badge" :title="'Total assists in this game'">
+              <span class="em">🤝</span>{{ snapshot.stats.assists ?? '—' }}
+            </div>
+            <div
+              class="badge"
+              :title="'Creep Score (minions + monsters) total'"
+            >
+              <span class="em">👾</span>{{ snapshot.stats.cs ?? '—' }}
+            </div>
+            <div class="badge" :title="'Vision score total'">
+              <span class="em">👁</span>{{ snapshot.stats.vision ?? '—' }}
+            </div>
+            <div style="margin-top: 8px">
+              <span class="badge">{{ insights.kda }}</span>
+              <span class="badge">{{ insights.csPerMin }}</span>
+              <span class="badge">{{ insights.kpPerMin }}</span>
+            </div>
+          </div>
+          <div class="card">
+            <h4>Items</h4>
+            <div class="items">
+              <div
+                v-for="(it, idx) in regularItems"
+                :key="'item-' + idx"
+                class="item-pill"
+                :title="it ? it + ' • Slot ' + idx : 'Empty slot ' + idx"
+              >
+                <img
+                  v-if="snapshot.assets?.itemIconUrls && snapshot.assets.itemIconUrls[idx]"
+                  :src="snapshot.assets.itemIconUrls[idx]"
+                  class="icon lg"
+                  :alt="it || 'Empty'"
+                />
+                <div
+                  v-else
+                  class="icon lg"
+                  style="background: #0a0c10; border: 1px dashed #1e2230"
+                ></div>
+              </div>
+              <div
+                class="item-pill"
+                :title="trinketItem ? trinketItem + ' • Trinket slot' : 'Trinket slot'"
+              >
+                <img
+                  v-if="snapshot.assets?.itemIconUrls && snapshot.assets.itemIconUrls[6]"
+                  :src="snapshot.assets.itemIconUrls[6]"
+                  class="icon lg"
+                  :alt="trinketItem || 'Empty'"
+                />
+                <div
+                  v-else
+                  class="icon lg"
+                  style="background: #0a0c10; border: 1px dashed #1e2230"
+                ></div>
+              </div>
+            </div>
+            <h4 style="margin-top: 10px">Runes</h4>
+            <div class="items">
+              <div
+                class="item-pill"
+                :title="'Keystone: ' + (snapshot.runes.keystone || '—')"
+              >
+                <img
+                  v-if="snapshot.assets?.runeIcons?.keystone"
+                  :src="snapshot.assets.runeIcons.keystone"
+                  class="icon lg"
+                  :alt="snapshot.runes.keystone || 'Keystone'"
+                />
+                <div
+                  v-else
+                  class="icon lg"
+                  style="background: #0a0c10; border: 1px dashed #1e2230"
+                ></div>
+              </div>
+              <div
+                class="item-pill"
+                :title="'Primary tree: ' + (snapshot.runes.primaryTree || '—')"
+              >
+                <img
+                  v-if="snapshot.assets?.runeIcons?.primaryTree"
+                  :src="snapshot.assets.runeIcons.primaryTree"
+                  class="icon lg"
+                  :alt="snapshot.runes.primaryTree || 'Primary'"
+                />
+                <div
+                  v-else
+                  class="icon lg"
+                  style="background: #0a0c10; border: 1px dashed #1e2230"
+                ></div>
+              </div>
+              <div
+                class="item-pill"
+                :title="'Secondary tree: ' + (snapshot.runes.secondaryTree || '—')"
+              >
+                <img
+                  v-if="snapshot.assets?.runeIcons?.secondaryTree"
+                  :src="snapshot.assets.runeIcons.secondaryTree"
+                  class="icon lg"
+                  :alt="snapshot.runes.secondaryTree || 'Secondary'"
+                />
+                <div
+                  v-else
+                  class="icon lg"
+                  style="background: #0a0c10; border: 1px dashed #1e2230"
+                ></div>
+              </div>
+            </div>
+            <h4 style="margin-top: 10px">Summoners</h4>
+            <div class="items">
+              <div
+                class="item-pill"
+                :title="'Summoner Spell: ' + (snapshot.spells.d || '—')"
+              >
+                <img
+                  v-if="spellIconUrls.d"
+                  :src="spellIconUrls.d"
+                  class="icon lg"
+                  :alt="snapshot.spells.d || 'D'"
+                />
+                <div
+                  v-else
+                  class="icon lg"
+                  style="background: #0a0c10; border: 1px dashed #1e2230"
+                ></div>
+              </div>
+              <div
+                class="item-pill"
+                :title="'Summoner Spell: ' + (snapshot.spells.f || '—')"
+              >
+                <img
+                  v-if="spellIconUrls.f"
+                  :src="spellIconUrls.f"
+                  class="icon lg"
+                  :alt="snapshot.spells.f || 'F'"
+                />
+                <div
+                  v-else
+                  class="icon lg"
+                  style="background: #0a0c10; border: 1px dashed #1e2230"
+                ></div>
+              </div>
+            </div>
+          </div>
+          <!-- New Wave Management notifications block -->
+          <div class="card">
+            <h4>Wave Management</h4>
+            <div class="notif-scroll">
+              <div
+                v-for="n in waveNotifs"
+                :key="n.id"
+                style="
+                  display: grid;
+                  grid-template-columns: 24px 1fr;
+                  gap: 8px;
+                  align-items: start;
+                  padding: 6px 0;
+                  border-bottom: 1px dashed #202434;
+                "
+              >
+                <div style="text-align: center">
+                  <span v-if="n.icon">{{ n.icon }}</span>
+                  <span v-else>•</span>
+                </div>
+                <div>
+                  <div
+                    style="
+                      font-weight: 600;
+                      display: flex;
+                      gap: 6px;
+                      align-items: center;
+                    "
+                  >
+                    <span>{{ n.title }}</span>
+                    <span class="badge" v-if="n.severity==='warning'"
+                      >Warning</span
+                    >
+                    <span
+                      class="badge"
+                      v-if="n.severity==='critical'"
+                      style="border-color: #ff4d4f"
+                      >Critical</span
+                    >
+                  </div>
+                  <div class="small muted">
+                    {{ new Date(n.at).toLocaleTimeString() }}
+                  </div>
+                  <div class="small" v-if="n.body">{{ n.body }}</div>
+                </div>
+              </div>
+              <div
+                v-if="!waveNotifs || !waveNotifs.length"
+                class="small muted"
+              >
+                No wave tips yet.
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <h4>Objective Preparation</h4>
+            <div class="notif-scroll">
+              <div
+                v-for="n in macroNotifs"
+                :key="n.id"
+                style="
+                  display: grid;
+                  grid-template-columns: 24px 1fr;
+                  gap: 8px;
+                  align-items: start;
+                  padding: 6px 0;
+                  border-bottom: 1px dashed #202434;
+                "
+              >
+                <div style="text-align: center">
+                  <span v-if="n.icon">{{ n.icon }}</span>
+                  <span v-else>•</span>
+                </div>
+                <div>
+                  <div
+                    style="
+                      font-weight: 600;
+                      display: flex;
+                      gap: 6px;
+                      align-items: center;
+                    "
+                  >
+                    <span>{{ n.title }}</span>
+                    <span class="badge" v-if="n.severity==='warning'"
+                      >Warning</span
+                    >
+                    <span
+                      class="badge"
+                      v-if="n.severity==='critical'"
+                      style="border-color: #ff4d4f"
+                      >Critical</span
+                    >
+                  </div>
+                  <div class="small muted">
+                    {{ new Date(n.at).toLocaleTimeString() }}
+                  </div>
+                  <div class="small" v-if="n.body">{{ n.body }}</div>
+                </div>
+              </div>
+              <div
+                v-if="!macroNotifs || !macroNotifs.length"
+                class="small muted"
+              >
+                No macro tips yet.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Event Log + Scoreboard side-by-side -->
+        <div v-if="hasData" class="upper-grid">
+          <div class="log-card">
+            <h4>Event Log (recent)</h4>
+            <div class="log-list">
+              <div v-for="(e, idx) in eventLog" :key="idx" class="log-item">
+                <div style="text-align: center">{{ e.icon }}</div>
+                <div class="small muted">{{ e.time }}</div>
+                <div>{{ e.text }}</div>
+              </div>
+            </div>
+          </div>
+          <div class="roster">
+            <h4>Scoreboard</h4>
+            <div class="team-grid">
+              <div class="roster">
+                <h4>My Team</h4>
+                <div v-if="teams.my && teams.my.length > 0">
+                  <div v-for="p in teams.my" :key="p.name" class="player">
+                    <img
+                      v-if="p.championIcon"
+                      :src="p.championIcon"
+                      class="icon"
+                      alt=""
+                    />
+                    <div>
+                      <div class="meta">
+                        <span class="name">{{ p.name }}</span>
+                        <span class="small"
+                          >{{ p.champion }} ({{ p.level }})</span
+                        >
+                      </div>
+                      <div class="line">
+                        <span class="badge"
+                          ><span class="em">⚔</span>{{ p.k }}</span
+                        >
+                        <span class="badge"
+                          ><span class="em">☠</span>{{ p.d }}</span
+                        >
+                        <span class="badge"
+                          ><span class="em">🤝</span>{{ p.a }}</span
+                        >
+                        <span class="badge"
+                          ><span class="em">👾</span>{{ p.cs }}</span
+                        >
+                        <img
+                          v-if="p.spells.dIcon"
+                          :src="p.spells.dIcon"
+                          class="icon sm"
+                          alt=""
+                        />
+                        <img
+                          v-if="p.spells.fIcon"
+                          :src="p.spells.fIcon"
+                          class="icon sm"
+                          alt=""
+                        />
+                      </div>
+                      <div class="line" style="margin-top: 4px">
+                        <div
+                          v-for="it in p.items"
+                          :key="it.id"
+                          class="item-icon"
+                          :title="it.tooltip"
+                        >
+                          <img
+                            v-if="it.icon"
+                            :src="it.icon"
+                            class="icon sm"
+                            :alt="it.name"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div v-else class="small muted" style="padding: 12px">
+                  Loading team data...
+                </div>
+              </div>
+              <div class="roster">
+                <h4>Enemy Team</h4>
+                <div v-if="teams.enemy && teams.enemy.length > 0">
+                  <div v-for="p in teams.enemy" :key="p.name" class="player">
+                    <img
+                      v-if="p.championIcon"
+                      :src="p.championIcon"
+                      class="icon"
+                      alt=""
+                    />
+                    <div>
+                      <div class="meta">
+                        <span class="name">{{ p.name }}</span>
+                        <span class="small"
+                          >{{ p.champion }} ({{ p.level }})</span
+                        >
+                      </div>
+                      <div class="line">
+                        <span class="badge"
+                          ><span class="em">⚔</span>{{ p.k }}</span
+                        >
+                        <span class="badge"
+                          ><span class="em">☠</span>{{ p.d }}</span
+                        >
+                        <span class="badge"
+                          ><span class="em">🤝</span>{{ p.a }}</span
+                        >
+                        <span class="badge"
+                          ><span class="em">👾</span>{{ p.cs }}</span
+                        >
+                        <img
+                          v-if="p.spells.dIcon"
+                          :src="p.spells.dIcon"
+                          class="icon sm"
+                          alt=""
+                        />
+                        <img
+                          v-if="p.spells.fIcon"
+                          :src="p.spells.fIcon"
+                          class="icon sm"
+                          alt=""
+                        />
+                      </div>
+                      <div class="line" style="margin-top: 4px">
+                        <div
+                          v-for="it in p.items"
+                          :key="it.id"
+                          class="item-icon"
+                          :title="it.tooltip"
+                        >
+                          <img
+                            v-if="it.icon"
+                            :src="it.icon"
+                            class="icon sm"
+                            :alt="it.name"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div v-else class="small muted" style="padding: 12px">
+                  Loading team data...
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <div class="toast-container">
+        <div
+          v-for="t in toasts"
+          :key="t.id + '-' + t.until"
+          class="toast"
+          :class="{ warning: t.severity === 'warning', critical: t.severity === 'critical' }"
+        >
+          <div class="title">
+            <span v-if="t.icon">{{ t.icon }}</span>
+            <span>{{ t.title }}</span>
+          </div>
+          <div class="body" v-if="t.body">{{ t.body }}</div>
+        </div>
+      </div>
+    </div>
+
+    <script src="../dist/renderer/app.js"></script>
+  </body>
+</html>
