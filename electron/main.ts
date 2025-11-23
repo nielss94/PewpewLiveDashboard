@@ -1,6 +1,7 @@
 import { app, BrowserWindow, ipcMain } from "electron";
 import * as path from "path";
 import { globalShortcut } from "electron";
+import * as fs from "fs";
 import {
   getAggregatedSnapshot,
   AggregatedSnapshot,
@@ -17,6 +18,18 @@ let pollTimer: NodeJS.Timeout | null = null;
 let lastSnapshot: AggregatedSnapshot | null = null;
 const isDev = process.env.APP_DEV === "1" || !app.isPackaged;
 let tipsEngine: TipsEngine | null = null;
+
+// Avoid GPU shader disk cache writes (prevents Windows "Access is denied" cache errors)
+app.commandLine.appendSwitch("disable-gpu-shader-disk-cache");
+// Ensure Chromium cache writes go to a writable location
+try {
+  const userDataDir = app.getPath("userData");
+  const cacheDir = path.join(userDataDir, "Cache");
+  try {
+    fs.mkdirSync(cacheDir, { recursive: true });
+  } catch {}
+  app.setPath("cache", cacheDir);
+} catch {}
 
 function resolveAppPath(...segments: string[]): string {
   // When packaged, app.getAppPath() points inside app.asar

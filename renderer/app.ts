@@ -65,6 +65,49 @@
     return `${m}:${sec}`;
   }
 
+  // Cache champion index by Data Dragon version to avoid repeated large JSON downloads
+  const championIndexByVersion: Record<string, Record<string, string>> = {};
+  const championIndexPromises = new Map<
+    string,
+    Promise<Record<string, string>>
+  >();
+  async function getChampionIndexForVersion(
+    version: string
+  ): Promise<Record<string, string>> {
+    if (championIndexByVersion[version]) {
+      return championIndexByVersion[version];
+    }
+    if (championIndexPromises.has(version)) {
+      return championIndexPromises.get(version)!;
+    }
+    championIndexPromises.set(
+      version,
+      (async () => {
+      try {
+        const res = await fetch(
+          `https://ddragon.leagueoflegends.com/cdn/${version}/data/en_US/champion.json`
+        );
+        const json = await res.json();
+        const map: Record<string, string> = {};
+        for (const key of Object.keys(json.data)) {
+          const c = json.data[key];
+          map[c.name] = c.id;
+        }
+        championIndexByVersion[version] = map;
+        return map;
+      } catch {
+        // On failure, cache empty map to prevent hammering the endpoint
+        const empty: Record<string, string> = {};
+        championIndexByVersion[version] = empty;
+        return empty;
+      } finally {
+        championIndexPromises.delete(version);
+      }
+    })()
+    );
+    return championIndexPromises.get(version)!;
+  }
+
   createApp({
     setup() {
       const snapshot = ref(null as Snapshot | null);
@@ -94,6 +137,10 @@
       };
       const notifications = ref([] as Array<Notif>);
 
+      // Throttle for raw dump building (avoid heavy processing too frequently)
+      let lastRawDumpAt = 0;
+      const RAW_DUMP_MIN_INTERVAL_MS = 2000;
+
       function cd(ab: Ability): string {
         if (!ab) return "—";
         return `${ab.name}`;
@@ -119,6 +166,7 @@
           previousHasData.value = hasData.value;
           // Load teams if already in game
           if (hasData.value) {
+            lastRawDumpAt = Date.now();
             void loadRawDump();
             // Ensure overlay is visible if already in game at startup
             try {
@@ -145,7 +193,11 @@
           previousHasData.value = hasData.value;
           // Reload teams when snapshot updates (in case players changed)
           if (hasData.value) {
-            void loadRawDump();
+            const now = Date.now();
+            if (now - lastRawDumpAt >= RAW_DUMP_MIN_INTERVAL_MS) {
+              lastRawDumpAt = now;
+              void loadRawDump();
+            }
           }
         });
         // Subscribe to tips
@@ -402,18 +454,8 @@
             }
           }
 
-          // Build champion index
-          let champIndex: Record<string, string> = {};
-          try {
-            const res = await fetch(
-              `https://ddragon.leagueoflegends.com/cdn/${version}/data/en_US/champion.json`
-            );
-            const json = await res.json();
-            for (const key of Object.keys(json.data)) {
-              const c = json.data[key];
-              champIndex[c.name] = c.id;
-            }
-          } catch {}
+      // Build champion index (cached per version)
+      const champIndex = await getChampionIndexForVersion(version);
 
           function mapSpellToKey(name: string): string | null {
             const map: Record<string, string> = {
